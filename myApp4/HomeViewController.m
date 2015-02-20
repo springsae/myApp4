@@ -13,10 +13,6 @@
 {
     //assetsUrlを格納するインスタンス
     NSString *_assetsurl;
-    
-    //ALAssetsLibraryのインスタンス
-    ALAssetsLibrary *_library;
-    
     CGPoint _koteiViewCenter;
 }
 
@@ -37,36 +33,36 @@
     //スクロールする
     self.myScrollView.contentSize = CGSizeMake(320, 1200);
     
-    //固定する
-     _koteiViewCenter = [_koteiView center];
-    
-    
-    UIImage *image = [UIImage imageNamed:@"preview.jpg"];
-    
-    UIImageView *imagev = [[UIImageView alloc]initWithFrame:CGRectMake(0, 40, 160, 160)];
-    imagev.image = image;
-    
-    [self.view addSubview:imagev];
-    
-    UIImageView *imagev2 = [[UIImageView alloc]initWithFrame:CGRectMake(160, 40, 160, 160)];
-    imagev2.image = image;
-    
-    [self.view addSubview:imagev2];
-    
-    UIImageView *imagev3 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 200, 160, 160)];
-    imagev3.image = image;
-    
-    [self.view addSubview:imagev3];
-    
-    UIImageView *imagev4 = [[UIImageView alloc]initWithFrame:CGRectMake(160, 200, 160, 160)];
-    imagev4.image = image;
-    
-    [self.view addSubview:imagev4];
-    
-    UIImageView *imagev5 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 360 , 160, 160)];
-    imagev5.image = image;
-    
-    [self.view addSubview:imagev5];
+//    //固定する
+//     _koteiViewCenter = [_koteiView center];
+//    
+//    
+//    UIImage *image = [UIImage imageNamed:@"preview.jpg"];
+//    
+//    UIImageView *imagev = [[UIImageView alloc]initWithFrame:CGRectMake(0, 40, 160, 160)];
+//    imagev.image = image;
+//    
+//    [self.view addSubview:imagev];
+//    
+//    UIImageView *imagev2 = [[UIImageView alloc]initWithFrame:CGRectMake(160, 40, 160, 160)];
+//    imagev2.image = image;
+//    
+//    [self.view addSubview:imagev2];
+//    
+//    UIImageView *imagev3 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 200, 160, 160)];
+//    imagev3.image = image;
+//    
+//    [self.view addSubview:imagev3];
+//    
+//    UIImageView *imagev4 = [[UIImageView alloc]initWithFrame:CGRectMake(160, 200, 160, 160)];
+//    imagev4.image = image;
+//    
+//    [self.view addSubview:imagev4];
+//    
+//    UIImageView *imagev5 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 360 , 160, 160)];
+//    imagev5.image = image;
+//    
+//    [self.view addSubview:imagev5];
     
 //    UIImageView *imagev6 = [[UIImageView alloc]initWithFrame:CGRectMake(160, 360 , 160, 160)];
 //    imagev6.image = image;
@@ -78,16 +74,73 @@
 //    
 //    [self.view addSubview:imagev7];
     
+    //UserDefaultObjectを用意する
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    //一旦配列に取り出す
+    NSArray *assetsURLs = [defaults objectForKey:@"assetsURLs"];
+    
+    _counter = 0;
+    
+    for (NSString *assetsURL in assetsURLs) {
+        [self showPhoto:assetsURL];
+    }
+    
+    
+    self.view.frame = CGRectMake(0, 40, 320, 1200);
+    
 }
 
-//viewの表示位置を固定する
--(void)scrollViewDidScroll:(UIScrollView*)scrollView
+-(void)showPhoto:(NSString *)url
 {
-    CGPoint contentOffset = [scrollView contentOffset];
-    CGPoint newCenter = CGPointMake(_koteiViewCenter.x + contentOffset.x,
-                                    _koteiViewCenter.y + contentOffset.y);
-    [_koteiView setCenter:newCenter];
+    
+    //URLからALAssetを取得
+    [_library assetForURL:[NSURL URLWithString:url]
+              resultBlock:^(ALAsset *asset) {
+                  
+                  //画像があればYES、無ければNOを返す
+                  if(asset){
+                      NSLog(@"データがあります");
+                      //ALAssetRepresentationクラスのインスタンスの作成
+                      ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
+                      
+                      //ALAssetRepresentationを使用して、フルスクリーン用の画像をUIImageに変換
+                      //fullScreenImageで元画像と同じ解像度の写真を取得する。
+                      
+                      _img_x = 0;
+                      _img_y = 40;
+                      
+                      if (_counter % 2 == 1) {
+                          _img_x = 160;
+                      }
+                      
+                      _img_y = 160 * (_counter / 2);
+                      
+                      UIImage *fullscreenImage = [UIImage imageWithCGImage:[assetRepresentation fullResolutionImage]];
+                      
+                      UIImageView *imagev = [[UIImageView alloc]initWithFrame:CGRectMake(_img_x, _img_y, 160, 160)];
+                      imagev.image = fullscreenImage;
+                      
+                      [self.view addSubview:imagev];
+                      _counter++;
+                      
+                  }else{
+                      NSLog(@"データがありません");
+                  }
+                  
+              } failureBlock: nil];
 }
+
+
+
+////viewの表示位置を固定する
+//-(void)scrollViewDidScroll:(UIScrollView*)scrollView
+//{
+//    CGPoint contentOffset = [scrollView contentOffset];
+//    CGPoint newCenter = CGPointMake(_koteiViewCenter.x + contentOffset.x,
+//                                    _koteiViewCenter.y + contentOffset.y);
+//    [_koteiView setCenter:newCenter];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

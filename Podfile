@@ -3,7 +3,6 @@
 
 target 'myApp4' do
 pod 'JPSThumbnailAnnotation'
-
 end
 
 target 'myApp4Tests' do
