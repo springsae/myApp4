@@ -20,6 +20,7 @@
 		E7DBAE021A936F5700F35594 /* preview.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7DBAE011A936F5700F35594 /* preview.jpg */; };
 		E7DBAE051A937A9200F35594 /* TLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DBAE041A937A9200F35594 /* TLViewController.m */; };
 		E7DBAE081A937AC600F35594 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DBAE071A937AC600F35594 /* MapViewController.m */; };
+		E7ECAF7A1A9B0DB3003D66C3 /* TableViewCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7ECAF791A9B0DB3003D66C3 /* TableViewCustomCell.xib */; };
 		E7ECCE0F1A96FE8B002AF807 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7ECCE0E1A96FE8B002AF807 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		E7DBAE041A937A9200F35594 /* TLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLViewController.m; sourceTree = "<group>"; };
 		E7DBAE061A937AC600F35594 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		E7DBAE071A937AC600F35594 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		E7ECAF791A9B0DB3003D66C3 /* TableViewCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCustomCell.xib; sourceTree = "<group>"; };
 		E7ECCE0E1A96FE8B002AF807 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -83,10 +85,10 @@
 		E7DBADCB1A936C8B00F35594 = {
 			isa = PBXGroup;
 			children = (
-				E7ECCE0E1A96FE8B002AF807 /* MapKit.framework */,
 				E7DBADD61A936C8B00F35594 /* myApp4 */,
 				E7DBADF01A936C8B00F35594 /* myApp4Tests */,
 				E7DBADD51A936C8B00F35594 /* Products */,
+				E7ECCE0E1A96FE8B002AF807 /* MapKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,12 +115,13 @@
 				E788064D1A937F920050F021 /* imageViewController.m */,
 				E788064F1A93865E0050F021 /* commentViewController.h */,
 				E78806501A93865E0050F021 /* commentViewController.m */,
-				E7DBAE061A937AC600F35594 /* MapViewController.h */,
-				E7DBAE071A937AC600F35594 /* MapViewController.m */,
 				E7DBAE031A937A9200F35594 /* TLViewController.h */,
 				E7DBAE041A937A9200F35594 /* TLViewController.m */,
+				E7DBAE061A937AC600F35594 /* MapViewController.h */,
+				E7DBAE071A937AC600F35594 /* MapViewController.m */,
 				E7DBADE41A936C8B00F35594 /* Images.xcassets */,
 				E7DBADE61A936C8B00F35594 /* LaunchScreen.xib */,
+				E7ECAF781A9B0D58003D66C3 /* UITableViewCustomCell */,
 				E7DBADD71A936C8B00F35594 /* Supporting Files */,
 			);
 			path = myApp4;
@@ -157,6 +160,15 @@
 				E7DBAE011A936F5700F35594 /* preview.jpg */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		E7ECAF781A9B0D58003D66C3 /* UITableViewCustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				E7ECAF791A9B0DB3003D66C3 /* TableViewCustomCell.xib */,
+			);
+			name = UITableViewCustomCell;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7DBAE021A936F5700F35594 /* preview.jpg in Resources */,
+				E7ECAF7A1A9B0DB3003D66C3 /* TableViewCustomCell.xib in Resources */,
 				E7DBADE31A936C8B00F35594 /* Main.storyboard in Resources */,
 				E7DBADE81A936C8B00F35594 /* LaunchScreen.xib in Resources */,
 				E7DBADE51A936C8B00F35594 /* Images.xcassets in Resources */,

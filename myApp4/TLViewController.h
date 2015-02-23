@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface TLViewController : UIViewController
+{
+    ALAssetsLibrary *_library;  //ALAssetsLibraryのインスタンス
+    int _img_x;
+    int _img_y;
+    int _counter;
+}
+
+
 
 @end

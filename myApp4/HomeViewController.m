@@ -13,7 +13,7 @@
 {
     //assetsUrlを格納するインスタンス
     NSString *_assetsurl;
-    CGPoint _koteiViewCenter;
+//    CGPoint _koteiViewCenter;
 }
 
 
