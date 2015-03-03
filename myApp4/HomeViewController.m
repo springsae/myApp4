@@ -9,11 +9,13 @@
 #import "HomeViewController.h"
 #import "imageViewController.h"
 
+
 @interface HomeViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>
 {
     //assetsUrlを格納するインスタンス
     NSString *_assetsurl;
-//    CGPoint _koteiViewCenter;
+
+    //    CGPoint _koteiViewCenter;
 }
 
 
@@ -31,7 +33,9 @@
     }
     
     //スクロールする
-    self.myScrollView.contentSize = CGSizeMake(320, 1200);
+    self.myScrollView.contentSize = CGSizeMake(320, 2000);
+    
+    
     
 //    //固定する
 //     _koteiViewCenter = [_koteiView center];

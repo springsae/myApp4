@@ -1,0 +1,2 @@
+PODS_MYAPP__GPUIMAGE_CLANG_MODULES_AUTOLINK = YES
+PODS_MYAPP__GPUIMAGE_OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreMedia" -framework "OpenGLES" -framework "QuartzCore"

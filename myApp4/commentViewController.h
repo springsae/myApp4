@@ -34,5 +34,11 @@
 @property NSUserDefaults *userDefaults;
 
 @property NSMutableArray *photoData;
+@property (weak, nonatomic) IBOutlet UIButton *homeButton;
+- (IBAction)tapBackHome:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
+
+- (IBAction)tapShare:(id)sender;
 
 @end

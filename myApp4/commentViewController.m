@@ -10,7 +10,7 @@
 #import "imageViewController.h"
 #import "HomeViewController.h"
 
-@interface commentViewController ()<UITextViewDelegate>
+@interface commentViewController ()<UITextFieldDelegate,UITextViewDelegate>
 
 @end
 
@@ -37,10 +37,32 @@
     //保存されたデータを取り出す
     _photolist = [[defaults objectForKey:@"photoData"] mutableCopy];
     
-    
     _textField.delegate = self;
+    
+    
+    //textFieldを角丸にする
+    [[self.textField layer] setCornerRadius:10.0];
+    [self.textField setClipsToBounds:YES];
+    
+    //textViewに黒色の枠線を付ける
+    [[self.textField layer] setBorderColor:[[UIColor blackColor] CGColor]];
+    [[self.textField layer] setBorderWidth:1.0];
+    
+    // UITextFieldのインスタンスを生成
+    CGRect rect = CGRectMake(10, 270, 295, 80);
+    UITextField *textField = [[UITextField alloc]initWithFrame:rect];
+    
+    // 枠線のスタイルを設定
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    
+    // デリゲートを設定
+    textField.delegate = self;
+    
+    // UITextFieldのインスタンスをビューに追加
+    [self.view addSubview:textField];
 
 }
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -114,6 +136,52 @@
     NSInteger selectedRow = [pickerView selectedRowInComponent:0];
     NSLog(@"%ld",(long)selectedRow);
 }
+
+
+//- (BOOL)textField:(UITextField *)textField
+//shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    // すでに入力されているテキストを取得
+//    NSMutableString *text = [textField.text mutableCopy];
+//    
+//    // すでに入力されているテキストに今回編集されたテキストをマージ
+//    [text replaceCharactersInRange:range withString:string];
+//    
+//    // 結果が文字数をオーバーしていないならYES，オーバーしている場合はNO
+//    return ([text length] < 200);
+//}
+
+//- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    NSMutableString *tmp = [textField.text mutableCopy];
+//    [tmp replaceCharactersInRange:range withString:string];
+//    return ([tmp doubleValue] <= 100 && [tmp length] <= 200);
+//}
+
+
+//文字制限をするメソッド
+- (BOOL)textField:(UITextView *)textField shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    
+    int maxInputLength = 100;    //文字制限数
+    
+    //入力済のテキストを取得
+    NSMutableString *str = [textField.text mutableCopy];
+    
+    //入力済のテキストと入力が行われたテキストを結合
+    [str replaceCharactersInRange:range withString:text];
+    
+    //文字数制限を超えたら
+    if([str length] > maxInputLength)
+    {
+        return NO;  //入力を禁止する
+    }
+//    //現在の文字数を表示
+//    self.textLengthLabel.text = [NSString stringWithFormat:@"%d/%d文字",[str length],maxInputLength];
+
+    return YES;
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -210,4 +278,15 @@
     }
 }
 
+
+
+- (IBAction)tapBackHome:(id)sender
+{
+    
+    
+}
+- (IBAction)tapShare:(id)sender
+{
+    
+}
 @end

@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <ImageIO/ImageIO.h>
+#import <JPSThumbnailAnnotation.h>
 
 @interface MapViewController : UIViewController<MKMapViewDelegate>
+{
+    ALAsset *asset;
+    NSArray *_assetsUrls;
+    int _counter;
+}
 
 @end

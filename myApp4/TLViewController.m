@@ -7,8 +7,13 @@
 //
 
 #import "TLViewController.h"
+#import "CustomTableViewCell.h"
+#import "TableViewConst.h"
+#import <ImageIO/ImageIO.h>
 
-@interface TLViewController ()
+
+
+@interface TLViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
@@ -23,62 +28,180 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     //一旦配列に取り出す
-    NSArray *assetsURLs = [defaults objectForKey:@"assetsURLs"];
-    
+    _assetsUrls = [defaults objectForKey:@"assetsURLs"];
+
     _counter = 0;
     
-    for (NSString *assetsURL in assetsURLs)
+    
+
+//    for (NSString *assetsURL in assetsURL) {
+//        [self showPhoto:assetsURL];
+//    }
+    
+    // デリゲートメソッドをこのクラスで実装する
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    
+    //テーブルに表示したいデータソースをセット
+    
+    
+
+    // カスタマイズしたセルをテーブルビューにセット
+    UINib *nib = [UINib nibWithNibName:CustomTableViewCellIdentifier bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"Cell"];
+    
+    
+    //------- exifを取得する --------
+    // raw data
+    //ALAssetRepresentationクラスのインスタンスの作成
+    ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
+    NSUInteger size = [assetRepresentation size];
+    uint8_t *buff = (uint8_t *)malloc(sizeof(uint8_t)*size);
+    if(buff != nil)
     {
-        [self showPhoto:assetsURL];
-
+        NSError *error = nil;
+        NSUInteger bytesRead = [assetRepresentation getBytes:buff fromOffset:0 length:size error:&error];
+        if (bytesRead && !error)
+        {
+            NSData *photo = [NSData dataWithBytesNoCopy:buff length:bytesRead freeWhenDone:YES];
+            
+            CGImageSourceRef cgImage = CGImageSourceCreateWithData((CFDataRef)photo, nil);
+            NSDictionary *metadata = (NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(cgImage, 0, nil));
+            if (metadata)
+            {
+                NSLog(@"%@", [metadata description]);
+            }
+            else
+            {
+                NSLog(@"no metadata");
+            }
+            
+        }
+        if (error)
+        {
+            NSLog(@"error:%@", error);
+            free(buff);
+        }
+        
     }
-    
+
+
 }
 
-
--(void)showPhoto:(NSString *)url
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return  _assetsUrls.count;
     
-    //URLからALAssetを取得
-    [_library assetForURL:[NSURL URLWithString:url]
-              resultBlock:^(ALAsset *asset) {
-                  
-                  //画像があればYES、無ければNOを返す
-                  if(asset){
-                      NSLog(@"データがあります");
-                      //ALAssetRepresentationクラスのインスタンスの作成
-                      ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
-                      
-                      //ALAssetRepresentationを使用して、フルスクリーン用の画像をUIImageに変換
-                      //fullScreenImageで元画像と同じ解像度の写真を取得する。
-                      
-                      _img_x = 0;
-                      _img_y = 40;
-                      
-//                      if (_counter % 2 == 1) {
-//                          _img_x = 160;
-//                      }
-//                      
-//                      _img_y = 160 * (_counter / 2);
-//                      
-                      UIImage *fullscreenImage = [UIImage imageWithCGImage:[assetRepresentation fullResolutionImage]];
-                      
-                      UIImageView *imagev = [[UIImageView alloc]initWithFrame:CGRectMake(_img_x, _img_y, 160, 160)];
-                      imagev.image = fullscreenImage;
-                      
-                      [self.view addSubview:imagev];
-                      _counter++;
-                      
-                  }else{
-                      NSLog(@"データがありません");
-                  }
-                  
-              } failureBlock: nil];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    static NSString *CellIdentifier = @"Cell";
+    
+    //再利用可能なCellオブジェクトを作成
+    CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    //要確認
+    ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
+    UIImage *returnfullscreenImage = [UIImage imageWithCGImage:[assetRepresentation fullResolutionImage]];
+    cell.CustomCellImage.image = returnfullscreenImage;
+    
+    //textfield編集不可
+    cell.CustomCellText.editable = NO;
+    
+    return cell;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [CustomTableViewCell rowHeight];
 }
 
 
+// Cell が選択された時
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    [self performSegueWithIdentifier:@"backToComment" sender:self];
+}
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"backToComment"])
+    {
+        TLViewController *tvc = (TLViewController*)[segue destinationViewController];
+        // 移行先の ViewController に画像名を渡す
+        tvc.assetsurl = self.assetsurl;
+    }
 
+}
+
+//
+//-(void)showPhoto:(NSString *)url
+//{
+//    
+//    //URLからALAssetを取得
+//    [_library assetForURL:[NSURL URLWithString:url]
+//              resultBlock:^(ALAsset *asset)
+//    {
+//                  
+//        //画像があればYES、無ければNOを返す
+//        if(asset)
+//        {
+//            NSLog(@"データがあります");
+//            //ALAssetRepresentationクラスのインスタンスの作成
+//            ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
+//            UIImage *fullscreenImage = [UIImage imageWithCGImage:[assetRepresentation fullResolutionImage]];
+//            
+//            //exifを取得する
+//            // raw data
+//            NSUInteger size = [assetRepresentation size];
+//            uint8_t *buff = (uint8_t *)malloc(sizeof(uint8_t)*size);
+//            if(buff != nil)
+//            {
+//                NSError *error = nil;
+//                NSUInteger bytesRead = [assetRepresentation getBytes:buff fromOffset:0 length:size error:&error];
+//                if (bytesRead && !error)
+//                {
+//                    NSData *photo = [NSData dataWithBytesNoCopy:buff length:bytesRead freeWhenDone:YES];
+//                    
+//                    CGImageSourceRef cgImage = CGImageSourceCreateWithData((CFDataRef)photo, nil);
+//                    NSDictionary *metadata = (NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(cgImage, 0, nil));
+//                    if (metadata) {
+//                        NSLog(@"%@", [metadata description]);
+//                    }
+//                    else
+//                    {
+//                        NSLog(@"no metadata");
+//                    }
+//                    
+//                }
+//                if (error) {
+//                    NSLog(@"error:%@", error);
+//                    free(buff);
+//                }
+//                
+//            }
+//            
+//            
+//            
+//        }
+//        else
+//        {
+//            NSLog(@"データがありません");
+//        }
+//                  
+//    } failureBlock: nil];
+//}
+
+//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    NSInteger dataCount;
+//    
+//    
+//}
 
 
 - (void)didReceiveMemoryWarning {

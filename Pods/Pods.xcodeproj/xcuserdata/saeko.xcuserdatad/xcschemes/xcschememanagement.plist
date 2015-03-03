@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-myApp4-DLCImagePickerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-myApp4-GPUImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-myApp4-JPSThumbnailAnnotation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-myApp4.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3FBF4E08BF19458C9F10DB22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>742C6CDBFB9AA83388953D12</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A41E4856E8D5E0CE37A24953</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3414DF1E89211048C307545</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

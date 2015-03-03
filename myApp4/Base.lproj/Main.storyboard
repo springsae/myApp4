@@ -7,7 +7,7 @@
         <!--timeline-->
         <scene sceneID="YWe-7t-9dd">
             <objects>
-                <viewController id="sO9-zm-j6W" sceneMemberID="viewController">
+                <viewController id="sO9-zm-j6W" customClass="TLViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kaR-k5-njp"/>
                         <viewControllerLayoutGuide type="bottom" id="Nuu-DH-HXR"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BQu-5U-08H">
-                                <rect key="frame" x="0.0" y="-6" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -25,10 +25,14 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="timeline" id="KUd-e7-ZT2"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableView" destination="BQu-5U-08H" id="M6p-RY-4AX"/>
+                        <segue destination="rzi-dJ-124" kind="showDetail" identifier="backToComment" id="NWx-EV-GeU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tdb-w0-ZMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-290" y="521"/>
+            <point key="canvasLocation" x="150" y="466"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="Mf8-A2-IQU">
@@ -97,7 +101,7 @@
                                 <rect key="frame" x="154" y="115" width="150" height="150"/>
                             </pickerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fag-v7-NiZ">
-                                <rect key="frame" x="11" y="273" width="298" height="79"/>
+                                <rect key="frame" x="10" y="270" width="295" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -122,26 +126,46 @@
                                     <segue destination="8zE-kj-1St" kind="showDetail" identifier="backImageView" id="kad-4B-gxK"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geY-lQ-cBY">
+                                <rect key="frame" x="16" y="530" width="39" height="30"/>
+                                <state key="normal" title="home">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapBackHome:" destination="rzi-dJ-124" eventType="touchUpInside" id="IDu-ZN-jWl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ro-dp-B4h">
+                                <rect key="frame" x="263" y="530" width="38" height="30"/>
+                                <state key="normal" title="share">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapShare:" destination="rzi-dJ-124" eventType="touchUpInside" id="7af-VT-0u0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="backImage" destination="U7f-GO-lLT" id="QXk-mK-Pvl"/>
+                        <outlet property="homeButton" destination="geY-lQ-cBY" id="bDV-Ka-Rm6"/>
                         <outlet property="okButton" destination="cEq-V1-qME" id="j0O-TI-Vca"/>
                         <outlet property="picker" destination="v56-EZ-sWR" id="F1Z-Uo-hXE"/>
+                        <outlet property="shareButton" destination="5Ro-dp-B4h" id="EKf-Re-JJr"/>
                         <outlet property="smallImage" destination="63v-CN-FU8" id="R4b-yj-5Ea"/>
                         <outlet property="textField" destination="Fag-v7-NiZ" id="gar-Ob-xS5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="skd-e0-4NS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="-227"/>
+            <point key="canvasLocation" x="770" y="-225"/>
         </scene>
         <!--map-->
         <scene sceneID="CNn-YC-DDA">
             <objects>
-                <viewController id="8Ly-rC-lCV" sceneMemberID="viewController">
+                <viewController id="8Ly-rC-lCV" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NJ0-Ni-lam"/>
                         <viewControllerLayoutGuide type="bottom" id="0Hi-ij-qKd"/>
@@ -166,11 +190,11 @@
                         <viewControllerLayoutGuide type="top" id="H6y-1V-zKD"/>
                         <viewControllerLayoutGuide type="bottom" id="1te-gI-nTV"/>
                     </layoutGuides>
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="qrQ-AV-u3q">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="qrQ-AV-u3q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRh-DB-5Ak">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRh-DB-5Ak">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqY-cj-BhE">
@@ -185,7 +209,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1200" id="gpd-MC-Cv2"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="2000" id="xdZ-wd-6US"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -251,4 +275,7 @@
             <point key="canvasLocation" x="-636" y="2048"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="NWx-EV-GeU"/>
+    </inferredMetricsTieBreakers>
 </document>

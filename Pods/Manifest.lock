@@ -1,0 +1,20 @@
+PODS:
+  - DLCImagePickerController (0.0.1):
+    - DLCImagePickerController/Core (= 0.0.1)
+    - DLCImagePickerController/FilterSamples (= 0.0.1)
+  - DLCImagePickerController/Core (0.0.1):
+    - GPUImage
+  - DLCImagePickerController/FilterSamples (0.0.1)
+  - GPUImage (0.1.6)
+  - JPSThumbnailAnnotation (1.0.0)
+
+DEPENDENCIES:
+  - DLCImagePickerController
+  - JPSThumbnailAnnotation
+
+SPEC CHECKSUMS:
+  DLCImagePickerController: c20add17537a9fc90ac3ddf7f2cc80ec1397a715
+  GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
+  JPSThumbnailAnnotation: 3146c1cc9bdfb5e12888cf6c85d8d35940e66c0d
+
+COCOAPODS: 0.35.0
