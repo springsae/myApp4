@@ -67,6 +67,9 @@
                                     <segue destination="rzi-dJ-124" kind="show" identifier="showComment" id="BXm-kM-D7p"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8P-LN-db6">
+                                <rect key="frame" x="0.0" y="418" width="320" height="162"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -74,6 +77,7 @@
                     <connections>
                         <outlet property="backCamera" destination="YpB-PP-K2v" id="iRg-XO-fZY"/>
                         <outlet property="callComment" destination="y20-r3-Tgj" id="2HQ-hg-GtS"/>
+                        <outlet property="imageChangePicker" destination="F8P-LN-db6" id="ICk-D8-WfW"/>
                         <outlet property="showImage" destination="Mbw-Gh-ch8" id="2fQ-Er-Rpz"/>
                         <outlet property="tapCallComment" destination="y20-r3-Tgj" id="D64-nA-a2A"/>
                     </connections>

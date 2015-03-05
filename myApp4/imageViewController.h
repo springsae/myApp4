@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "UIImage+Filters.h"
+
 
 
 @interface imageViewController : UIViewController
 {
     NSString *_assetsUrl; //assetsUrlを格納するインスタンス
     ALAssetsLibrary *_library;
+    NSArray *_imageChangeArray;
 }
 
 
@@ -24,5 +27,6 @@
 - (IBAction)tapBackCamera:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *callComment;
 @property (weak, nonatomic) IBOutlet UIButton *tapCallComment;
+@property (weak, nonatomic) IBOutlet UIPickerView *imageChangePicker;
 
 @end

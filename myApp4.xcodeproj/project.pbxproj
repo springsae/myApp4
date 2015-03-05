@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		515E11263D52C41D464EA7AC /* libPods-myApp4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 413C435A8FD3197A26E29F35 /* libPods-myApp4.a */; };
+		E71A555A1AA5B715009BE574 /* UIImage+Filters.m in Sources */ = {isa = PBXBuildFile; fileRef = E71A55591AA5B715009BE574 /* UIImage+Filters.m */; };
 		E74622DF1AA30C970064B411 /* ayala.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E74622DE1AA30C970064B411 /* ayala.jpg */; };
 		E788064E1A937F920050F021 /* imageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E788064D1A937F920050F021 /* imageViewController.m */; };
 		E78806511A93865E0050F021 /* commentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E78806501A93865E0050F021 /* commentViewController.m */; };
@@ -42,6 +43,8 @@
 		07B40A41F8F16FDA8F10C8EC /* Pods-myApp4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myApp4.release.xcconfig"; path = "Pods/Target Support Files/Pods-myApp4/Pods-myApp4.release.xcconfig"; sourceTree = "<group>"; };
 		413C435A8FD3197A26E29F35 /* libPods-myApp4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myApp4.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFF96957E2330FD7ECE164D7 /* Pods-myApp4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myApp4.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myApp4/Pods-myApp4.debug.xcconfig"; sourceTree = "<group>"; };
+		E71A55581AA5B715009BE574 /* UIImage+Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filters.h"; sourceTree = "<group>"; };
+		E71A55591AA5B715009BE574 /* UIImage+Filters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filters.m"; sourceTree = "<group>"; };
 		E74622DE1AA30C970064B411 /* ayala.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ayala.jpg; sourceTree = "<group>"; };
 		E788064C1A937F920050F021 /* imageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imageViewController.h; sourceTree = "<group>"; };
 		E788064D1A937F920050F021 /* imageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = imageViewController.m; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 				E7ECAF8A1A9B206C003D66C3 /* TableViewConst.h */,
 				E7ECAF8B1A9B206C003D66C3 /* TableViewConst.m */,
 				E7DBADE41A936C8B00F35594 /* Images.xcassets */,
+				E71A55581AA5B715009BE574 /* UIImage+Filters.h */,
+				E71A55591AA5B715009BE574 /* UIImage+Filters.m */,
 				E7DBADE61A936C8B00F35594 /* LaunchScreen.xib */,
 				E7DBADD71A936C8B00F35594 /* Supporting Files */,
 			);
@@ -337,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E71A555A1AA5B715009BE574 /* UIImage+Filters.m in Sources */,
 				E7DBADE01A936C8B00F35594 /* ViewController.m in Sources */,
 				E7DBAE051A937A9200F35594 /* TLViewController.m in Sources */,
 				E7DBADDD1A936C8B00F35594 /* AppDelegate.m in Sources */,

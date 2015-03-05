@@ -11,6 +11,7 @@
 @interface CustomTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *CustomCellImage;
 @property (weak, nonatomic) IBOutlet UITextView *CustomCellText;
+@property (weak, nonatomic) IBOutlet UITextField *CustomCellTime;
 
 + (CGFloat)rowHeight;
 

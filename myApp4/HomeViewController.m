@@ -10,6 +10,7 @@
 #import "imageViewController.h"
 
 
+
 @interface HomeViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>
 {
     //assetsUrlを格納するインスタンス

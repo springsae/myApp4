@@ -28,6 +28,10 @@
         
         [self showPhoto:self.assetsurl];
     
+    self.imageChangePicker.delegate = self;
+    _imageChangeArray = [NSArray arrayWithObjects:
+                      @"Saturation",@"B&W",@"Vignette",@"Vintage",@"Curve",nil];
+    
 }
 
 
@@ -76,6 +80,41 @@
     
 }
 
+//横方向の個数を指定
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// pickerViewの縦の長さを決める
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    int cnt = [_imageChangeArray count];
+    return cnt;
+}
+
+//ピッカービューの行のタイトルを返す
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [_imageChangeArray objectAtIndex:row];
+}
+
+
+//選択された行番号を取得
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSInteger selectedRow = [pickerView selectedRowInComponent:0];
+    NSLog(@"%ld",(long)selectedRow);
+    
+    //ピッカービュー選択されたら
+    if(pickerView)
+    {
+        
+    }
+}
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -93,6 +132,8 @@
     [self showPhoto:self.assetsurl];
     
 }
+
+
 
 /*
 #pragma mark - Navigation

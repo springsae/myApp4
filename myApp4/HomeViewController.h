@@ -10,6 +10,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 
+
 @interface HomeViewController : UIViewController
 {
     ALAssetsLibrary *_library;  //ALAssetsLibraryのインスタンス
